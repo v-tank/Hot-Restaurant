@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Star Wars - Express</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="text-center">
+      	<span class="glyphicon glyphicon-fire">
+      	
+      </span>
+  		"Hot Restaurant"
+  	</h1>
+  	<hr>
+      <h2 class="text-center">Make Your Reservation</h2>
+      <br>
+      <div class="text-center">
+      	<a href="/tables">
+      		<button type="button" class="btn btn-lg btn-primary">
+      		<span class="glyphicon glyphicon-list-alt">
+      		</span>
+      		"View Tables"
+      		</button>
+      	</a>
+      	<a href="/">
+      		<button type="button" class="btn btn-lg btn-default">
+      			<span class="glyphicon glyphicon-home">
+      			</span>
+      		</button>
+      	</a>
+      </div>
+  </div>
+      
+	<!-- Reservation Page -->
+      
+    <div class="row">
+
+      <div class="col-lg-12">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Table Reservation</strong></h3>
+          </div>
+          <div class="panel-body">
+            <form role="form">
+
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="reserve_name">
+              </div>
+
+              <div class="form-group">
+                <label for="role">Phone Number</label>
+                <input type="text" class="form-control" id="reserve_phone">
+              </div>
+
+              <div class="form-group">
+                <label for="age">Email</label>
+                <input type="text" class="form-control" id="reserve_email">
+              </div>
+
+              <div class="form-group">
+                <label for="force-points">Unique ID</label>
+                <input type="text" class="form-control" id="reserve_uniqueID">
+              </div>
+              <button type="submit" class="btn btn-primary submit">Submit</button>
+          </form>
+      </div>
+  </div>
+</div>
+</div>
+
+
+<!--  Footer -->
+		<footer class="footer">
+			<div class="container">
+
+				<p>
+					<a href="/api/tables">API Table Link</a>
+					" | "
+					<a href="/api/waitlist">API Wait List</a>
+				</p>
+			</div>
+		</footer>
+
+            
+    <!-- Code to handle how form data is sent to server -->
+
+ <script type="text/javascript">
+ 	$(".submit").on("click", function(){
+
+ 		var newReservation = {
+ 			customerName: $("#reservation_name").val().trim(),
+ 			phoneNumber: $("#reserve_phone").val().trim(),
+ 			customerEmail: $("#reserve_email").val().trim(),
+ 			cusomterID: $("#reserve_uniqueID").val().trim()
+ 		};
+ 		console.log(newReservation);
+
+ 		var currentURL = window.locatino.origin; 
+
+ 		#.post(currentURL + "/api/tables", newReservation, function(data) {
+
+ 			if(data === true) {
+ 				alert("Yay! You are officially booked!")
+ 			}
+
+ 			if(data === false) {
+ 				alert("Sorry you are on the wait list")
+ 			}
+
+ 			$("#reserve_name").val("");
+ 			$("#reserve_phone").val("");
+ 			$("#reserve_email").val("");
+ 			$("#reserve_uniqueID").val("");
+ 	
+ 		});
+
+ 	return false;
+ });
+</script>
+</body>
+</html>
