@@ -17,7 +17,7 @@
       	<span class="glyphicon glyphicon-fire">
       	
       </span>
-  		"Hot Restaurant"
+  		Hot Restaurant
   	</h1>
   	<hr>
       <h2 class="text-center">Make Your Reservation</h2>
@@ -27,7 +27,7 @@
       		<button type="button" class="btn btn-lg btn-primary">
       		<span class="glyphicon glyphicon-list-alt">
       		</span>
-      		"View Tables"
+      		View Tables
       		</button>
       	</a>
       	<a href="/">
@@ -71,7 +71,7 @@
                 <label for="force-points">Unique ID</label>
                 <input type="text" class="form-control" id="reserve_uniqueID">
               </div>
-              <button type="submit" class="btn btn-primary submit">Submit</button>
+              <button type="submit" class="btn btn-primary submit" id="submit">Submit</button>
           </form>
       </div>
   </div>
@@ -85,7 +85,7 @@
 
 				<p>
 					<a href="/api/tables">API Table Link</a>
-					" | "
+					|
 					<a href="/api/waitlist">API Wait List</a>
 				</p>
 			</div>
@@ -95,19 +95,21 @@
     <!-- Code to handle how form data is sent to server -->
 
  <script type="text/javascript">
- 	$(".submit").on("click", function(){
+ 	$("#submit").on("click", function(event){
+     event.preventDefault();
 
  		var newReservation = {
- 			customerName: $("#reservation_name").val().trim(),
+ 			name: $("#reserve_name").val().trim(),
  			phoneNumber: $("#reserve_phone").val().trim(),
- 			customerEmail: $("#reserve_email").val().trim(),
- 			cusomterID: $("#reserve_uniqueID").val().trim()
- 		};
+ 			email: $("#reserve_email").val().trim(),
+ 			uniqueID: $("#reserve_uniqueID").val().trim()
+     };
+     
  		console.log(newReservation);
 
- 		var currentURL = window.locatino.origin; 
+ 		var currentURL = window.location.origin; 
 
- 		#.post(currentURL + "/api/tables", newReservation, function(data) {
+ 		$.post("/api/new", newReservation, function(data) {
 
  			if(data === true) {
  				alert("Yay! You are officially booked!")
@@ -123,9 +125,9 @@
  			$("#reserve_uniqueID").val("");
  	
  		});
-
  	return false;
  });
+
 </script>
 </body>
 </html>
