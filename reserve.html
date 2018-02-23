@@ -105,19 +105,21 @@
  			uniqueID: $("#reserve_uniqueID").val().trim()
      };
      
- 		console.log(newReservation);
+ 		// console.log(newReservation);
 
  		var currentURL = window.location.origin; 
 
- 		$.post("/api/new", newReservation, function(data) {
+ 		$.post(currentURL + "/api/new", newReservation, function(data) {
 
- 			if(data === true) {
- 				alert("Yay! You are officially booked!")
- 			}
+      console.log(data);
 
- 			if(data === false) {
- 				alert("Sorry you are on the wait list")
- 			}
+ 			if (data) {
+ 				alert("Yay! You are officially booked!");
+ 			} else {
+         alert("Sorry, you are on the waitlist");
+       }
+       
+      // console.log("in here");
 
  			$("#reserve_name").val("");
  			$("#reserve_phone").val("");
