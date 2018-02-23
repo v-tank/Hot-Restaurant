@@ -71,6 +71,14 @@ app.post("/api/new", function (req, res) {
   res.json(newReservation);
 });
 
+app.post("/api/clear", function (req, res) {
+
+  reservations = [];
+
+  waitList = [];
+
+});
+
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function () {
